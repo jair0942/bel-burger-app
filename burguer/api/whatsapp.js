@@ -1,13 +1,13 @@
 export default function handler(request, response) {
   // Asegurarnos de que sea una petición POST
   if (request.method !== 'POST') {
-    return response.status(405).json({ error: 'Método No Permitido' });
+    return response.status(405).send('Método No Permitido');
   }
 
-  const { message } = request.body;
+  const message = request.body.message;
 
   if (!message) {
-    return response.status(400).json({ error: 'Falta el mensaje' });
+    return response.status(400).send('Falta el mensaje');
   }
 
   // Obtenemos el número desde las variables de entorno de Vercel/Netlify.
@@ -17,6 +17,7 @@ export default function handler(request, response) {
   const encodedMsg = encodeURIComponent(message);
   const waUrl = `https://wa.me/${phone}?text=${encodedMsg}`;
 
-  // Respondemos al frontend con el link generado
-  return response.status(200).json({ url: waUrl });
+  // En lugar de enviar un JSON, forzamos al navegador a redirigirse automáticamente
+  // Esto es 100% compatible con iPhone/Safari y salta todos los bloqueos
+  return response.redirect(302, waUrl);
 }

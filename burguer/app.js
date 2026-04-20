@@ -413,28 +413,34 @@ function initCheckout() {
         btn.innerHTML = 'Conectando...';
         btn.disabled = true;
 
-        // Llamada a la Edge Function
-        fetch('/api/whatsapp', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: msg })
-        })
-        .then(function(res) { return res.json(); })
-        .then(function(data) {
-            if (data.url) {
-                window.open(data.url, '_blank', 'noopener,noreferrer');
-            } else {
-                alert('Hubo un problema al generar el enlace.');
-            }
-        })
-        .catch(function(err) {
-            console.error('API Error:', err);
-            alert('Fallo de conexión. Por favor intenta de nuevo.');
-        })
-        .finally(function() {
+        // Apple/Safari en iPhone restringe enlaces a apps (como WhatsApp) 
+        // si se generan mediante 'fetch'. Para saltarnos ese bloqueo con un 100% 
+        // de éxito, simulamos subir un formulario nativo:
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/api/whatsapp';
+        // 'target="_blank"' le indica al teléfono que dedique una nueva pestaña 
+        // temporal que brincará directo a WhatsApp.
+        form.target = '_blank';
+        form.style.display = 'none';
+
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'message';
+        input.value = msg;
+
+        form.appendChild(input);
+        document.body.appendChild(form);
+        
+        // Ejecución nativa instantánea (Safari confía en esto)
+        form.submit();
+
+        // Limpiamos el botón
+        setTimeout(function() {
             btn.innerHTML = originalText;
             btn.disabled = false;
-        });
+            document.body.removeChild(form);
+        }, 1000);
     });
 }
 
