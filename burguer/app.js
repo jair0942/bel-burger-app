@@ -421,6 +421,57 @@ function initProductModal() {
     });
 }
 
+function initGeoLocation() {
+    var btn = document.getElementById('btn-gps');
+    if (!btn) return;
+
+    btn.addEventListener('click', function() {
+        if (!navigator.geolocation) {
+            alert("Tu navegador no soporta ubicación automática.");
+            return;
+        }
+
+        var origText = btn.innerHTML;
+        btn.innerHTML = 'Ubicando...';
+        btn.disabled = true;
+
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            var lat = pos.coords.latitude;
+            var lon = pos.coords.longitude;
+
+            // Reverse Geocoding usando Nominatim (100% Gratis, privado y sin API Key)
+            fetch('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + lat + '&lon=' + lon)
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    var address = data.address;
+                    if(address) {
+                        var barrio = address.neighbourhood || address.suburb || address.city_district || "";
+                        var calle = address.road || "";
+                        var numero = address.house_number || "";
+                        var combinedDir = calle + (numero ? " #" + numero : "");
+                        
+                        document.getElementById('del-barrio').value = barrio;
+                        document.getElementById('del-dir').value = combinedDir;
+                    }
+                    btn.innerHTML = '¡Ubicación aplicada!';
+                    setTimeout(function() {
+                        btn.innerHTML = origText;
+                        btn.disabled = false;
+                    }, 2000);
+                })
+                .catch(function() {
+                    alert("Error al mapear la ubicación. Por favor escríbela a mano.");
+                    btn.innerHTML = origText;
+                    btn.disabled = false;
+                });
+        }, function() {
+            alert("Permiso de GPS denegado. Puedes escribir la dirección a mano.");
+            btn.innerHTML = origText;
+            btn.disabled = false;
+        });
+    });
+}
+
 // --- WhatsApp Checkout ---
 function initCheckout() {
     document.getElementById('checkout-btn').addEventListener('click', function () {
@@ -429,7 +480,19 @@ function initCheckout() {
             return;
         }
 
+        var barrio = document.getElementById('del-barrio').value.trim();
+        var dir = document.getElementById('del-dir').value.trim();
+
+        if (!barrio || !dir) {
+            alert('Por favor, indica un Barrio y una Dirección de entrega antes de pedir.');
+            return;
+        }
+
         var msg = '🍔 *NUEVO PEDIDO — BEL BURGER*\n';
+        msg += '━━━━━━━━━━━━━━━━━━━━━\n\n';
+        msg += '📍 *DATOS DE ENTREGA*\n';
+        msg += '▸ Barrio: ' + barrio + '\n';
+        msg += '▸ Dirección: ' + dir + '\n\n';
         msg += '━━━━━━━━━━━━━━━━━━━━━\n\n';
 
         var total = 0;
@@ -514,4 +577,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // WhatsApp checkout
     initCheckout();
+
+    // Geolocation
+    initGeoLocation();
 });

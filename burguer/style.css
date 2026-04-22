@@ -602,6 +602,62 @@ button { font-family: var(--font); border: none; cursor: pointer; outline: none;
 }
 .btn-whatsapp:active { transform: scale(0.97); background: var(--green-dark); }
 
+/* Delivery Form */
+.cart-delivery-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    padding: 12px;
+    margin-bottom: 14px;
+}
+.del-heading {
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.del-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+.del-input {
+    width: 100%;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-family: var(--font);
+    color: var(--white);
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.del-input:focus { border-color: var(--accent); }
+.btn-gps {
+    width: 100%;
+    background: rgba(255, 106, 0, 0.1);
+    border: 1px solid rgba(255, 106, 0, 0.2);
+    color: var(--accent);
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: background 0.2s, transform 0.1s;
+}
+.btn-gps:active {
+    transform: scale(0.98);
+    background: rgba(255, 106, 0, 0.2);
+}
+
 /* Overlay */
 .cart-overlay {
     position: fixed;

@@ -85,6 +85,20 @@
         </div>
         <div class="cart-list" id="cart-list"></div>
         <div class="cart-bottom">
+            <div class="cart-delivery-box">
+                <h4 class="del-heading">Dirección de Entrega</h4>
+                <div class="del-inputs">
+                    <input type="text" id="del-barrio" placeholder="📍 Barrio" class="del-input">
+                    <input type="text" id="del-dir" placeholder="🏠 Dirección (Ej. Calle 5 # 12-34)" class="del-input">
+                </div>
+                <button type="button" id="btn-gps" class="btn-gps">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <circle cx="12" cy="12" r="3" />
+                        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16z"/>
+                    </svg>
+                    Usar mi ubicación GPS
+                </button>
+            </div>
             <div class="cart-total-row">
                 <span>Total</span>
                 <span class="cart-total-val" id="cart-total-price">$0</span>
