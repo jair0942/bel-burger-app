@@ -102,6 +102,40 @@
     </div>
     <div class="cart-overlay" id="cart-overlay"></div>
 
+    <!-- Product Modal -->
+    <div class="product-modal-window" id="product-modal-window">
+        <div class="pm-content">
+            <button class="pm-close" id="pm-close" aria-label="Cerrar modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+            </button>
+            <div class="pm-img-box">
+                <img src="" alt="" id="pm-img">
+                <span class="pm-tag" id="pm-tag"></span>
+            </div>
+            <div class="pm-body">
+                <h2 class="pm-name" id="pm-name"></h2>
+                <p class="pm-desc" id="pm-desc"></p>
+                <div class="pm-price" id="pm-price"></div>
+                
+                <div class="pm-modifications">
+                    <label for="pm-notes">Modificaciones o extras (Opcional)</label>
+                    <textarea id="pm-notes" rows="2" placeholder="Ej. Sin cebolla, salsa aparte..."></textarea>
+                </div>
+
+                <div class="pm-controls">
+                    <div class="qty-box pm-qty-box">
+                        <button class="qty-btn" id="pm-minus" type="button">−</button>
+                        <span class="qty-num" id="pm-num">1</span>
+                        <button class="qty-btn" id="pm-plus" type="button">+</button>
+                    </div>
+                    <button class="add-btn pm-add-btn" id="pm-add" type="button">Agregar al pedido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <span class="brand-bel">BEL</span><span class="brand-burger">BURGER</span>

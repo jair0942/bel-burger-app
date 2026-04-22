@@ -62,6 +62,8 @@ function renderCards() {
         // Image box
         var imgBox = document.createElement('div');
         imgBox.className = 'card-img-box';
+        imgBox.style.cursor = 'pointer';
+        imgBox.addEventListener('click', function () { openProductModal(p); });
 
         var img = document.createElement('img');
         img.className = 'card-img';
@@ -80,6 +82,13 @@ function renderCards() {
         // Body
         var body = document.createElement('div');
         body.className = 'card-body';
+        body.style.cursor = 'pointer';
+        body.addEventListener('click', function (e) {
+            // Prevent double-triggering if they click the button
+            if(e.target.tagName !== 'BUTTON') {
+                openProductModal(p);
+            }
+        });
 
         var name = document.createElement('h3');
         name.className = 'card-name';
@@ -103,52 +112,15 @@ function renderCards() {
         var controls = document.createElement('div');
         controls.className = 'card-controls';
 
-        // Qty
-        var qtyBox = document.createElement('div');
-        qtyBox.className = 'qty-box';
-
-        var minus = document.createElement('button');
-        minus.className = 'qty-btn';
-        minus.textContent = '−';
-        minus.type = 'button';
-
-        var numSpan = document.createElement('span');
-        numSpan.className = 'qty-num';
-        numSpan.textContent = '1';
-
-        var plus = document.createElement('button');
-        plus.className = 'qty-btn';
-        plus.textContent = '+';
-        plus.type = 'button';
-
-        var qty = 1;
-        minus.addEventListener('click', function () {
-            if (qty > 1) { qty--; numSpan.textContent = qty; }
-        });
-        plus.addEventListener('click', function () {
-            qty++;
-            numSpan.textContent = qty;
-        });
-
-        qtyBox.appendChild(minus);
-        qtyBox.appendChild(numSpan);
-        qtyBox.appendChild(plus);
-        controls.appendChild(qtyBox);
-
         // Add button
         var addBtn = document.createElement('button');
         addBtn.className = 'add-btn';
-        addBtn.textContent = 'Agregar';
+        addBtn.textContent = 'Seleccionar';
         addBtn.type = 'button';
 
-        addBtn.addEventListener('click', function () {
-            addToCart(p.id, qty);
-            addBtn.classList.add('done');
-            addBtn.textContent = '¡Listo!';
-            setTimeout(function () {
-                addBtn.classList.remove('done');
-                addBtn.textContent = 'Agregar';
-            }, 1200);
+        addBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            openProductModal(p);
         });
 
         controls.appendChild(addBtn);
@@ -160,7 +132,8 @@ function renderCards() {
 }
 
 // --- Cart Logic ---
-function addToCart(id, qty) {
+function addToCart(id, qty, notes) {
+    notes = (notes || '').trim();
     var product = null;
     for (var i = 0; i < products.length; i++) {
         if (products[i].id === id) { product = products[i]; break; }
@@ -169,13 +142,14 @@ function addToCart(id, qty) {
 
     var existing = null;
     for (var j = 0; j < cart.length; j++) {
-        if (cart[j].id === id) { existing = cart[j]; break; }
+        if (cart[j].id === id && cart[j].notes === notes) { existing = cart[j]; break; }
     }
 
     if (existing) {
         existing.quantity += qty;
     } else {
-        cart.push({ id: product.id, name: product.name, price: product.price, quantity: qty });
+        var cartItemId = Date.now().toString() + Math.random().toString();
+        cart.push({ cartItemId: cartItemId, id: product.id, name: product.name, price: product.price, quantity: qty, notes: notes });
     }
 
     updateCartUI();
@@ -189,10 +163,10 @@ function addToCart(id, qty) {
     }
 }
 
-function removeFromCart(id) {
+function removeFromCart(cartItemId) {
     var newCart = [];
     for (var i = 0; i < cart.length; i++) {
-        if (cart[i].id !== id) newCart.push(cart[i]);
+        if (cart[i].cartItemId !== cartItemId) newCart.push(cart[i]);
     }
     cart = newCart;
     updateCartUI();
@@ -234,6 +208,13 @@ function updateCartUI() {
             h4.textContent = item.quantity + 'x ' + item.name;
             info.appendChild(h4);
 
+            if (item.notes) {
+                var pNotes = document.createElement('p');
+                pNotes.className = 'cart-item-notes';
+                pNotes.textContent = item.notes;
+                info.appendChild(pNotes);
+            }
+
             var priceDiv = document.createElement('div');
             priceDiv.className = 'cart-item-price';
             priceDiv.textContent = fmt.format(sub);
@@ -245,9 +226,9 @@ function updateCartUI() {
             del.className = 'item-del';
             del.textContent = '✕';
             del.type = 'button';
-            (function (itemId) {
-                del.addEventListener('click', function () { removeFromCart(itemId); });
-            })(item.id);
+            (function (cItemId) {
+                del.addEventListener('click', function () { removeFromCart(cItemId); });
+            })(item.cartItemId);
 
             row.appendChild(del);
             listEl.appendChild(row);
@@ -386,6 +367,60 @@ function initTrueFocus() {
     setInterval(update, (animTime + pause) * 1000);
 }
 
+// --- Product Modal Logic ---
+let pmQty = 1;
+let currentProduct = null;
+
+function openProductModal(p) {
+    currentProduct = p;
+    pmQty = 1;
+
+    document.getElementById('pm-img').src = p.img;
+    document.getElementById('pm-img').alt = p.name;
+    document.getElementById('pm-tag').textContent = p.tag;
+    document.getElementById('pm-name').textContent = p.name;
+    document.getElementById('pm-desc').textContent = p.desc;
+    document.getElementById('pm-price').textContent = fmt.format(p.price);
+    document.getElementById('pm-notes').value = '';
+    document.getElementById('pm-num').textContent = pmQty;
+
+    document.getElementById('product-modal-window').classList.add('open');
+}
+
+function closeProductModal() {
+    document.getElementById('product-modal-window').classList.remove('open');
+}
+
+function initProductModal() {
+    document.getElementById('pm-close').addEventListener('click', closeProductModal);
+    document.getElementById('product-modal-window').addEventListener('click', function(e) {
+        if (e.target === this) closeProductModal();
+    });
+
+    document.getElementById('pm-minus').addEventListener('click', function() {
+        if (pmQty > 1) { pmQty--; document.getElementById('pm-num').textContent = pmQty; }
+    });
+    document.getElementById('pm-plus').addEventListener('click', function() {
+        pmQty++; document.getElementById('pm-num').textContent = pmQty;
+    });
+
+    document.getElementById('pm-add').addEventListener('click', function() {
+        if (!currentProduct) return;
+        var notes = document.getElementById('pm-notes').value.trim();
+        addToCart(currentProduct.id, pmQty, notes);
+        
+        var btn = document.getElementById('pm-add');
+        btn.classList.add('done');
+        btn.textContent = '¡Agregado!';
+        setTimeout(function() {
+            btn.classList.remove('done');
+            btn.textContent = 'Agregar al pedido';
+            closeProductModal();
+            openCart();
+        }, 600);
+    });
+}
+
 // --- WhatsApp Checkout ---
 function initCheckout() {
     document.getElementById('checkout-btn').addEventListener('click', function () {
@@ -395,13 +430,19 @@ function initCheckout() {
         }
 
         var msg = '🍔 *NUEVO PEDIDO — BEL BURGER*\n';
-        msg += '━━━━━━━━━━━━━━━━━━━━━\n';
+        msg += '━━━━━━━━━━━━━━━━━━━━━\n\n';
 
         var total = 0;
         for (var i = 0; i < cart.length; i++) {
             var sub = cart[i].price * cart[i].quantity;
             total += sub;
-            msg += '▸ ' + cart[i].quantity + 'x ' + cart[i].name + ' — ' + fmt.format(sub) + '\n';
+            
+            msg += '*' + (i + 1) + '. ' + cart[i].name + '*\n';
+            msg += '▸ Cantidad: ' + cart[i].quantity + '\n';
+            if (cart[i].notes) {
+                msg += '▸ *Notas:* ' + cart[i].notes + '\n';
+            }
+            msg += '▸ Subtotal: ' + fmt.format(sub) + '\n\n';
         }
 
         msg += '━━━━━━━━━━━━━━━━━━━━━\n';
@@ -467,6 +508,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // TrueFocus text
     initTrueFocus();
+
+    // Product Modal
+    initProductModal();
 
     // WhatsApp checkout
     initCheckout();

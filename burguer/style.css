@@ -632,6 +632,182 @@ button { font-family: var(--font); border: none; cursor: pointer; outline: none;
 
 
 /* ===================
+   PRODUCT MODAL
+   =================== */
+.product-modal-window {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.product-modal-window.open {
+    display: flex;
+    opacity: 1;
+}
+.pm-content {
+    background: var(--surface);
+    width: 100%;
+    max-width: 480px;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    transform: translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+.product-modal-window.open .pm-content {
+    transform: translateY(0);
+}
+.pm-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: background 0.2s;
+}
+.pm-close:active { background: rgba(0,0,0,0.8); }
+.pm-img-box {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    background: #000;
+    flex-shrink: 0;
+}
+.pm-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.pm-img-box::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--surface) 2%, transparent 40%);
+}
+.pm-tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 2;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: var(--r-pill);
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--accent);
+    border: 1px solid var(--border);
+}
+
+.pm-body {
+    padding: 24px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.pm-body::-webkit-scrollbar { width: 4px; }
+.pm-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+.pm-name {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+.pm-desc {
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+.pm-price {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--accent);
+    margin-bottom: 24px;
+}
+.pm-modifications {
+    margin-bottom: 24px;
+}
+.pm-modifications label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--white);
+}
+.pm-modifications textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    padding: 12px;
+    font-family: var(--font);
+    color: var(--white);
+    resize: none;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.pm-modifications textarea:focus {
+    border-color: var(--accent);
+}
+.pm-controls {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+.pm-qty-box {
+    padding: 4px;
+    background: rgba(255,255,255,0.08);
+}
+.pm-qty-box .qty-num {
+    min-width: 26px;
+}
+.pm-add-btn {
+    flex: 1;
+    height: 48px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Update cart item info area */
+.cart-item-info {
+    flex: 1;
+    padding-right: 12px;
+}
+.cart-item-notes {
+    font-size: 0.75rem;
+    color: var(--gray);
+    margin-top: 3px;
+    font-style: italic;
+    line-height: 1.3;
+}
+
+/* ===================
    RESPONSIVE
    =================== */
 
