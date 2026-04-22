@@ -43,7 +43,7 @@
         <div class="hero-bg-glow hero-bg-glow--2"></div>
         <div class="hero-body">
             <div class="hero-logo-area" id="hero-logo-area">
-                <img src="logo.png" alt="BEL BURGER" class="hero-logo" id="hero-logo">
+                <img src="logo.webp" alt="BEL BURGER" class="hero-logo" id="hero-logo">
             </div>
             <div class="hero-info">
                 <div class="focus-container" id="true-focus-container"></div>
@@ -90,6 +90,7 @@
                 <div class="del-inputs">
                     <input type="text" id="del-barrio" placeholder="📍 Barrio" class="del-input">
                     <input type="text" id="del-dir" placeholder="🏠 Dirección (Ej. Calle 5 # 12-34)" class="del-input">
+                    <input type="text" id="del-ref" placeholder="🗺️ Referencia de ubicación (Opcional)" class="del-input">
                 </div>
                 <button type="button" id="btn-gps" class="btn-gps">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -98,6 +99,14 @@
                     </svg>
                     Usar mi ubicación GPS
                 </button>
+            </div>
+            <div class="cart-delivery-box" style="margin-top: 15px;">
+                <h4 class="del-heading">Método de Pago</h4>
+                <select id="del-pago" class="del-input" style="background: rgba(255, 255, 255, 0.05); color: #fff;">
+                    <option value="" disabled selected>💳 Selecciona un método</option>
+                    <option value="Efectivo" style="color: #000;">💵 Efectivo</option>
+                    <option value="Transferencia" style="color: #000;">🏦 Transferencia</option>
+                </select>
             </div>
             <div class="cart-total-row">
                 <span>Total</span>

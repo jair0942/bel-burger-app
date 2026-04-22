@@ -10,7 +10,7 @@ var products = [
         name: "Hamburguesa BEL Tradicional",
         desc: "Pan artesanal, carne de la casa, salsa de la casa, mermelada de tocineta, queso cheddar, lechuga crespa, pepinillos y cebolla crispy. (+Papas)",
         price: 23000,
-        img: "img-classic.png",
+        img: "img-classic.webp",
         tag: "Hamburguesa"
     },
     {
@@ -18,7 +18,7 @@ var products = [
         name: "Perro BEL Tradicional",
         desc: "Pan artesanal, salchicha americana, salsa de la casa, queso mozzarella, mermelada de tocineta y tocineta crunchy. (+Papas)",
         price: 18000,
-        img: "perro_tradicional.png",
+        img: "perro_tradicional.webp",
         tag: "Perro"
     },
     {
@@ -26,7 +26,7 @@ var products = [
         name: "Salchipapa BEL Sencilla",
         desc: "Papas a la francesa, salsa de la casa, salsa de piña, salsa tártara, queso costeño, salchicha, tocineta crunchy.",
         price: 14000,
-        img: "salchipapa_sencilla.png",
+        img: "salchipapa_sencilla.webp",
         tag: "Salchipapa"
     },
     {
@@ -34,7 +34,7 @@ var products = [
         name: "Salchipapa BEL Tradicional",
         desc: "Papas a la francesa, salsa de la casa, salsa de piña, salsa tártara, queso costeño, salchicha, queso mozzarella, tocineta crunchy + cebolla crispy.",
         price: 20000,
-        img: "salchipapa_tradicional.png",
+        img: "salchipapa_tradicional.webp",
         tag: "Salchipapa"
     }
 ];
@@ -482,9 +482,16 @@ function initCheckout() {
 
         var barrio = document.getElementById('del-barrio').value.trim();
         var dir = document.getElementById('del-dir').value.trim();
+        var ref = document.getElementById('del-ref').value.trim();
+        var pago = document.getElementById('del-pago').value;
 
         if (!barrio || !dir) {
             alert('Por favor, indica un Barrio y una Dirección de entrega antes de pedir.');
+            return;
+        }
+
+        if (!pago) {
+            alert('Por favor, selecciona un Método de Pago antes de pedir.');
             return;
         }
 
@@ -492,7 +499,11 @@ function initCheckout() {
         msg += '━━━━━━━━━━━━━━━━━━━━━\n\n';
         msg += '📍 *DATOS DE ENTREGA*\n';
         msg += '▸ Barrio: ' + barrio + '\n';
-        msg += '▸ Dirección: ' + dir + '\n\n';
+        msg += '▸ Dirección: ' + dir + '\n';
+        if (ref) {
+            msg += '▸ Referencia: ' + ref + '\n';
+        }
+        msg += '▸ Pago: ' + pago + '\n\n';
         msg += '━━━━━━━━━━━━━━━━━━━━━\n\n';
 
         var total = 0;
