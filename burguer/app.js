@@ -514,8 +514,14 @@ function initGeoLocation() {
 function initCheckout() {
     document.getElementById('checkout-btn').addEventListener('click', function () {
         if (!isStoreOpen) {
-            alert('Actualmente estamos cerrados. Nuestro horario de atención es de Viernes a Domingo, de 4:00 PM a 12:00 AM. ¡Te esperamos pronto!');
-            return;
+            var continuar = confirm(
+                '⚠️ Actualmente estamos CERRADOS.\n\n' +
+                'Nuestro horario de atención es:\n' +
+                '🕓 Viernes a Domingo, de 4:00 PM a 12:00 AM\n\n' +
+                'Tu pedido podría NO ser atendido hasta que abramos.\n\n' +
+                '¿Deseas enviarlo de todas formas?'
+            );
+            if (!continuar) return;
         }
 
         if (cart.length === 0) {
