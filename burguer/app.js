@@ -546,13 +546,13 @@ function initCheckout() {
 
         var msg = '🍔 *NUEVO PEDIDO — BEL BURGER*\n';
         msg += '━━━━━━━━━━━━━━━━━━━━━\n\n';
-        msg += '📍 *DATOS DE ENTREGA*\n';
-        msg += '▸ Barrio: ' + barrio + '\n';
-        msg += '▸ Dirección: ' + dir + '\n';
+        msg += '📍 *DATOS DE ENTREGA*\n\n';
+        msg += '▸ *Barrio:* ' + barrio + '\n';
+        msg += '▸ *Dirección:* ' + dir + '\n';
         if (ref) {
-            msg += '▸ Referencia: ' + ref + '\n';
+            msg += '▸ *Referencia:* ' + ref + '\n';
         }
-        msg += '▸ Pago: ' + pago + '\n\n';
+        msg += '▸ *Pago:* ' + pago + '\n\n';
         msg += '━━━━━━━━━━━━━━━━━━━━━\n\n';
 
         var total = 0;
