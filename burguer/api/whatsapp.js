@@ -12,7 +12,7 @@ export default function handler(request, response) {
 
   // Obtenemos el número desde las variables de entorno de Vercel/Netlify.
   // ¡Este número ahora es un secreto de backend y NO está en el código público!
-  const phone = process.env.WHATSAPP_NUMBER || '573015369702'; // Valor de reserva
+  const phone = process.env.WHATSAPP_NUMBER || '573007787710'; // Valor de reserva
 
   const encodedMsg = encodeURIComponent(message);
   const waUrl = `https://wa.me/${phone}?text=${encodedMsg}`;

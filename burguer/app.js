@@ -48,6 +48,44 @@ const fmt = new Intl.NumberFormat('es-CO', {
 
 // --- State ---
 let cart = [];
+let isStoreOpen = false;
+
+// --- Store Status ---
+function initStoreStatus() {
+    function updateStatus() {
+        // Obtenemos la hora estricta de Colombia, sin importar dónde esté el cliente
+        const bogotaTimeStr = new Date().toLocaleString("en-US", { timeZone: "America/Bogota" });
+        const now = new Date(bogotaTimeStr);
+        
+        const day = now.getDay(); // 0 = Sunday, 5 = Friday, 6 = Saturday
+        const hour = now.getHours();
+
+        // Open Friday to Sunday, 16:00 to 23:59 (4 PM to 12 AM)
+        if ((day === 5 || day === 6 || day === 0) && hour >= 16 && hour < 24) {
+            isStoreOpen = true;
+        } else {
+            isStoreOpen = false;
+        }
+
+        const badge = document.getElementById('store-status-badge');
+        const statusText = document.getElementById('status-text');
+
+        if (badge && statusText) {
+            if (isStoreOpen) {
+                badge.classList.remove('closed');
+                badge.classList.add('open');
+                statusText.textContent = 'Abierto';
+            } else {
+                badge.classList.remove('open');
+                badge.classList.add('closed');
+                statusText.textContent = 'Cerrado';
+            }
+        }
+    }
+
+    updateStatus();
+    setInterval(updateStatus, 60000); // Check every minute
+}
 
 // --- Render Product Cards ---
 function renderCards() {
@@ -475,6 +513,11 @@ function initGeoLocation() {
 // --- WhatsApp Checkout ---
 function initCheckout() {
     document.getElementById('checkout-btn').addEventListener('click', function () {
+        if (!isStoreOpen) {
+            alert('Actualmente estamos cerrados. Nuestro horario de atención es de Viernes a Domingo, de 4:00 PM a 12:00 AM. ¡Te esperamos pronto!');
+            return;
+        }
+
         if (cart.length === 0) {
             alert('Agrega productos al carrito primero.');
             return;
@@ -591,4 +634,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Geolocation
     initGeoLocation();
+
+    // Store Status
+    initStoreStatus();
 });
