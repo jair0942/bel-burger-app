@@ -14,12 +14,12 @@ var products = [
         tag: "Hamburguesa"
     },
     {
-        id: 2,
-        name: "Perro BEL Tradicional",
-        desc: "Pan artesanal, salchicha americana, salsa de la casa, queso mozzarella, mermelada de tocineta y tocineta crunchy. (+Papas)",
-        price: 18000,
-        img: "perro_tradicional.webp",
-        tag: "Perro"
+        id: 5,
+        name: "Chicken BEL Tradicional",
+        desc: "Pan brioche, salsa chipotle, pechuga de pollo apanada, queso mozzarella, salsa ensalada especial de la casa, tocineta ahumada. (+Papas)",
+        price: 23000,
+        img: "hamburguesa_chiken.webp",
+        tag: "Chicken"
     },
     {
         id: 3,
@@ -36,6 +36,14 @@ var products = [
         price: 20000,
         img: "salchipapa_tradicional.webp",
         tag: "Salchipapa"
+    },
+    {
+        id: 2,
+        name: "Perro BEL Tradicional",
+        desc: "Pan artesanal, salchicha americana, salsa de la casa, queso mozzarella, mermelada de tocineta y tocineta crunchy. (+Papas)",
+        price: 18000,
+        img: "perro_tradicional.webp",
+        tag: "Perro"
     }
 ];
 
