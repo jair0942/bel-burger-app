@@ -59,24 +59,42 @@ let cart = [];
 let isStoreOpen = false;
 
 // --- Store Status ---
+
+// Semana especial: del lunes 27-Apr-2026 al domingo 03-May-2026
+// Jueves: 7 PM – 11:59 PM  |  Viernes–Domingo: horario normal (4 PM – 12 AM)
+var SPECIAL_WEEK_START = new Date('2026-04-27T00:00:00-05:00'); // lunes
+var SPECIAL_WEEK_END   = new Date('2026-05-04T00:00:00-05:00'); // lunes siguiente (exclusivo)
+
+function isSpecialWeek(now) {
+    return now >= SPECIAL_WEEK_START && now < SPECIAL_WEEK_END;
+}
+
+function checkIsOpen(now) {
+    var day  = now.getDay();  // 0=Dom, 1=Lun … 4=Jue, 5=Vie, 6=Sáb
+    var hour = now.getHours();
+
+    if (isSpecialWeek(now)) {
+        // Jueves especial: 7 PM – 11:59 PM
+        if (day === 4 && hour >= 19 && hour < 24) return true;
+        // Viernes–Domingo: horario normal 4 PM – 11:59 PM
+        if ((day === 5 || day === 6 || day === 0) && hour >= 16 && hour < 24) return true;
+        return false;
+    }
+
+    // Horario normal: Viernes–Domingo, 4 PM – 11:59 PM
+    return (day === 5 || day === 6 || day === 0) && hour >= 16 && hour < 24;
+}
+
 function initStoreStatus() {
     function updateStatus() {
-        // Obtenemos la hora estricta de Colombia, sin importar dónde esté el cliente
-        const bogotaTimeStr = new Date().toLocaleString("en-US", { timeZone: "America/Bogota" });
-        const now = new Date(bogotaTimeStr);
-        
-        const day = now.getDay(); // 0 = Sunday, 5 = Friday, 6 = Saturday
-        const hour = now.getHours();
+        // Hora estricta de Colombia, sin importar dónde esté el cliente
+        var bogotaTimeStr = new Date().toLocaleString('en-US', { timeZone: 'America/Bogota' });
+        var now = new Date(bogotaTimeStr);
 
-        // Open Friday to Sunday, 16:00 to 23:59 (4 PM to 12 AM)
-        if ((day === 5 || day === 6 || day === 0) && hour >= 16 && hour < 24) {
-            isStoreOpen = true;
-        } else {
-            isStoreOpen = false;
-        }
+        isStoreOpen = checkIsOpen(now);
 
-        const badge = document.getElementById('store-status-badge');
-        const statusText = document.getElementById('status-text');
+        var badge      = document.getElementById('store-status-badge');
+        var statusText = document.getElementById('status-text');
 
         if (badge && statusText) {
             if (isStoreOpen) {
@@ -522,10 +540,25 @@ function initGeoLocation() {
 function initCheckout() {
     document.getElementById('checkout-btn').addEventListener('click', function () {
         if (!isStoreOpen) {
+            // Construimos el mensaje de horario según semana normal o especial
+            var bogotaTimeStr = new Date().toLocaleString('en-US', { timeZone: 'America/Bogota' });
+            var nowCheck = new Date(bogotaTimeStr);
+            var horarioMsg;
+
+            if (isSpecialWeek(nowCheck)) {
+                horarioMsg =
+                    '⭐ SOLO POR ESTA SEMANA — Horario especial:\n' +
+                    '🕖 Jueves: 7:00 PM a 12:00 AM\n' +
+                    '🕓 Viernes a Domingo: 4:00 PM a 12:00 AM';
+            } else {
+                horarioMsg =
+                    '🕓 Nuestro horario de atención es:\n' +
+                    'Viernes a Domingo, de 4:00 PM a 12:00 AM';
+            }
+
             var continuar = confirm(
                 '⚠️ Actualmente estamos CERRADOS.\n\n' +
-                'Nuestro horario de atención es:\n' +
-                '🕓 Viernes a Domingo, de 4:00 PM a 12:00 AM\n\n' +
+                horarioMsg + '\n\n' +
                 'Tu pedido podría NO ser atendido hasta que abramos.\n\n' +
                 '¿Deseas enviarlo de todas formas?'
             );
