@@ -634,26 +634,27 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .cart-panel {
     position: fixed;
     top: 0; right: 0;
-    width: 100%; max-width: 380px;
+    width: 100%; max-width: 400px;
     height: 100vh; height: 100dvh;
     background: var(--surface);
     z-index: 200;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 0;
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
     box-shadow: -6px 0 30px rgba(0,0,0,0.6);
+    overflow: hidden;
 }
 .cart-panel.open { transform: translateX(0); }
 
 .cart-top {
+    flex-shrink: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 14px;
+    padding: 18px 20px 14px;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 14px;
 }
 .cart-heading { font-size: 1.1rem; font-weight: 800; }
 .cart-close {
@@ -668,13 +669,21 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 .cart-close:active { background: rgba(255,255,255,0.12); }
 
-.cart-list {
+/* Scrollable area: items + form */
+.cart-scroll {
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    padding: 14px 20px 0;
 }
-.cart-list::-webkit-scrollbar { width: 3px; }
-.cart-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+.cart-scroll::-webkit-scrollbar { width: 3px; }
+.cart-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+
+/* Legacy: keep cart-list inside scroll area */
+.cart-list {
+    margin-bottom: 12px;
+}
 
 .cart-empty {
     text-align: center;
@@ -687,7 +696,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     justify-content: space-between;
     align-items: center;
     padding: 12px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.03);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
 }
 .cart-item-info h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 2px; }
 .cart-item-price { color: var(--accent); font-weight: 700; font-size: 0.85rem; }
@@ -701,20 +710,23 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     align-items: center;
     justify-content: center;
     transition: background 0.15s;
+    flex-shrink: 0;
 }
 .item-del:active { background: rgba(255,50,50,0.2); }
 
+/* Sticky bottom: total + WhatsApp button */
 .cart-bottom {
-    padding-top: 14px;
+    flex-shrink: 0;
+    padding: 12px 20px 20px;
     border-top: 1px solid var(--border);
-    margin-top: 10px;
+    background: var(--surface);
 }
 .cart-total-row {
     display: flex;
     justify-content: space-between;
     font-size: 1.15rem;
     font-weight: 800;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 .btn-whatsapp {
     width: 100%;

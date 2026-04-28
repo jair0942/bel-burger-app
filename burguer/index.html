@@ -112,8 +112,11 @@
                 </svg>
             </button>
         </div>
-        <div class="cart-list" id="cart-list" aria-live="polite"></div>
-        <div class="cart-bottom">
+
+        <!-- Scrollable zone: items + form -->
+        <div class="cart-scroll" id="cart-scroll">
+            <div class="cart-list" id="cart-list" aria-live="polite"></div>
+
             <!-- Nombre del cliente -->
             <div class="cart-delivery-box">
                 <h4 class="del-heading">
@@ -161,6 +164,13 @@
                 <!-- Hidden real value -->
                 <input type="hidden" id="del-pago" value="">
             </div>
+
+            <!-- Spacer so content doesn't hide behind sticky bottom -->
+            <div style="height: 8px;"></div>
+        </div><!-- end .cart-scroll -->
+
+        <!-- Sticky bottom: total + WhatsApp -->
+        <div class="cart-bottom">
             <div class="cart-total-row">
                 <span>Total</span>
                 <span class="cart-total-val" id="cart-total-price">$0</span>

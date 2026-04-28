@@ -430,11 +430,11 @@ function openCart() {
     overlay.classList.add('show');
     overlay.removeAttribute('aria-hidden');
     document.body.style.overflow = 'hidden';
-    // Focus first input for accessibility
+    // Scroll to top of cart on each open
     setTimeout(function() {
-        var first = panel.querySelector('input, button');
-        if (first) first.focus();
-    }, 400);
+        var scroll = document.getElementById('cart-scroll');
+        if (scroll) scroll.scrollTop = 0;
+    }, 420);
 }
 
 function closeCart() {
