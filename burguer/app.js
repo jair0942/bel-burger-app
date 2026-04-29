@@ -79,7 +79,7 @@ var products = [
     {
         id: 4,
         name: "Salchipapa BEL Tradicional",
-        desc: "Papas a la francesa, salsa de la casa, salsa de piña, salsa tártara, queso costeño, salchicha, queso mozzarella, tocineta crunchy + cebolla crispy.",
+        desc: "Papas a la francesa, salsa de la casa, salsa de piña, tártara, chorizo, queso costeño, chongo, gratinado con maiz",
         price: 20000,
         img: "salchipapa_tradicional.webp",
         tag: "Salchipapa"
