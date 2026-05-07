@@ -91,6 +91,15 @@ var products = [
         price: 18000,
         img: "perro_tradicional.webp",
         tag: "Perro"
+    },
+    {
+        id: 8,
+        name: "Dulce Pecado",
+        desc: "Pan de mantequilla, tártara, lechuga, suiza, salsa de piña, papá chongo, queso mozzarella y mermelada de tocineta.",
+        price: 22000,
+        img: "perroc_.png",
+        tag: "Perro",
+        isNew: true
     }
 ];
 
