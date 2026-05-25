@@ -7,8 +7,12 @@
 function sanitizeInput(str, maxLen) {
     maxLen = maxLen || 300;
     if (typeof str !== 'string') return '';
-    // Remove HTML tags and trim
-    return str.replace(/<[^>]*>/g, '').replace(/[<>"'`]/g, '').trim().slice(0, maxLen);
+    return str
+        .replace(/<[^>]*>/g, '')
+        .replace(/[<>"'`]/g, '')
+        .replace(/[\u0000-\u001F]/g, '')
+        .trim()
+        .slice(0, maxLen);
 }
 
 // --- Toast notification system ---
@@ -47,7 +51,24 @@ var products = [
         price: 28000,
         priceAlt: 29000,
         priceAltLabel: "Mixta (Pollo + Carne)",
-        img: "burgerneuva.png",
+        img: "burgerneuva.webp",
+        tag: "Hamburguesa"
+    },
+    {
+        id: 9,
+        name: "TopBel",
+        desc: "Pan pretzel, salsa ahumada, lechuga crespa, aros de cebolla apanados, carne de la casa, cheddar, peperonni español, carne desmechada en salsa bbq.",
+        price: 35000,
+        img: "TopBel especial.webp",
+        tag: "Hamburguesa",
+        isNew: true
+    },
+    {
+        id: 10,
+        name: "TripleBEL",
+        desc: "Pan brioche, lechuga crespa, triple carne de la casa, queso cheddar / mozzarella, tocineta, aros de cebolla apanados.",
+        price: 35000,
+        img: "TRIPLE BEL __.webp",
         tag: "Hamburguesa",
         isNew: true
     },
@@ -57,16 +78,15 @@ var products = [
         desc: "Pan brioche, salsa chipotle, pechuga de pollo apanada, queso mozzarella, salsa ensalada especial de la casa, tocineta ahumada. (+Papas)",
         price: 23000,
         img: "hamburguesa_chiken.webp",
-        tag: "Chicken"
+        tag: "Hamburguesa"
     },
     {
         id: 7,
         name: "Salchi Ranch Tradicional",
         desc: "Papas a la francesa, lechuga, queso costeño, salsa tártara, salsa de piña, pechuga de pollo en salsa BBQ, salchicha ahumada, ranchera, chongo, queso mozzarella.",
         price: 25000,
-        img: "salchi.png",
-        tag: "Salchipapa",
-        isNew: true
+        img: "salchi.webp",
+        tag: "Salchipapa"
     },
     {
         id: 3,
@@ -97,9 +117,8 @@ var products = [
         name: "Dulce Pecado",
         desc: "Pan de mantequilla, tártara, lechuga, suiza, salsa de piña, papá chongo, queso mozzarella y mermelada de tocineta.",
         price: 22000,
-        img: "perroc_.png",
-        tag: "Perro",
-        isNew: true
+        img: "perroc_.webp",
+        tag: "Perro"
     }
 ];
 
@@ -190,6 +209,8 @@ function renderCards() {
     var grid = document.getElementById('cards-grid');
     if (!grid) return;
 
+    var frag = document.createDocumentFragment();
+
     products.forEach(function (p) {
         // Card container
         var card = document.createElement('div');
@@ -217,6 +238,9 @@ function renderCards() {
         img.src = p.img;
         img.alt = p.name;
         img.loading = 'lazy';
+        img.decoding = 'async';
+        img.width = 400;
+        img.height = 250;
         imgBox.appendChild(img);
 
         var tag = document.createElement('span');
@@ -289,8 +313,10 @@ function renderCards() {
         bottom.appendChild(controls);
         body.appendChild(bottom);
         card.appendChild(body);
-        grid.appendChild(card);
+        frag.appendChild(card);
     });
+
+    grid.appendChild(frag);
 
     // Reveal cards, hide skeleton
     if (skeleton) skeleton.style.display = 'none';
@@ -301,6 +327,8 @@ function renderCards() {
 function renderAdicionales() {
     var grid = document.getElementById('adicionales-grid');
     if (!grid) return;
+
+    var frag = document.createDocumentFragment();
 
     adicionales.forEach(function (a) {
         var pill = document.createElement('div');
@@ -316,17 +344,19 @@ function renderAdicionales() {
 
         pill.appendChild(pillName);
         pill.appendChild(pillPrice);
-        grid.appendChild(pill);
+        frag.appendChild(pill);
     });
+
+    grid.appendChild(frag);
 }
 
 // --- Cart Logic ---
+var productsMap = {};
+products.forEach(function(p) { productsMap[p.id] = p; });
+
 function addToCart(id, qty, notes, unitPrice) {
     notes = (notes || '').trim();
-    var product = null;
-    for (var i = 0; i < products.length; i++) {
-        if (products[i].id === id) { product = products[i]; break; }
-    }
+    var product = productsMap[id];
     if (!product) return;
 
     var finalPrice = (typeof unitPrice === 'number') ? unitPrice : product.price;
@@ -703,7 +733,9 @@ function openProductModal(p) {
     // Adicionales
     var adicList = document.getElementById('pm-adicionales-list');
     adicList.innerHTML = '';
-    adicionales.forEach(function(a) { adicList.appendChild(buildAdicionalBtn(a)); });
+    var frag = document.createDocumentFragment();
+    adicionales.forEach(function(a) { frag.appendChild(buildAdicionalBtn(a)); });
+    adicList.appendChild(frag);
 
     // Reset qty controls (no adicionales selected on open)
     var minus = document.getElementById('pm-minus');

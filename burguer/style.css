@@ -20,7 +20,7 @@
     --white: #f5f5f5;
     --gray: #888;
     --muted: #555;
-    --font: 'Outfit', sans-serif;
+    --font: 'Outfit', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
     --r-sm: 10px;
     --r-md: 16px;
     --r-lg: 24px;
@@ -453,6 +453,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     padding: 80px 16px 60px;
     max-width: 1150px;
     margin: 0 auto;
+    content-visibility: auto;
+    contain-intrinsic-size: 600px;
 }
 .menu-header {
     text-align: center;
@@ -498,6 +500,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     border: 1px solid var(--border);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+    will-change: transform;
 }
 .product-card:active {
     transform: scale(0.98);
@@ -884,6 +887,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     text-align: center;
     padding: 36px 20px;
     border-top: 1px solid var(--border);
+    content-visibility: auto;
+    contain-intrinsic-size: 150px;
 }
 .footer-text {
     margin-top: 6px;
@@ -1197,6 +1202,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     padding: 20px 16px 70px;
     max-width: 1150px;
     margin: 0 auto;
+    content-visibility: auto;
+    contain-intrinsic-size: 300px;
 }
 
 .adicionales-grid {

@@ -7,12 +7,15 @@
     <title>BEL BURGER — Premium Burger Experience</title>
     <meta name="description" content="BEL BURGER: Comida Rapida premium artesanales. Pide ahora por WhatsApp.">
     <meta name="theme-color" content="#0a0a0a">
-    <!-- Preconnect for faster font load -->
+    <!-- Preload critical assets -->
+    <link rel="preload" href="logo.webp" as="image" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://nominatim.openstreetmap.org">
+    <link rel="preload" href="style.css" as="style">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" media="print" onload="this.media='all'">
 </head>
 
 <body>
@@ -55,7 +58,7 @@
         <div class="hero-bg-glow hero-bg-glow--2"></div>
         <div class="hero-body">
             <div class="hero-logo-area" id="hero-logo-area">
-                <img src="logo.webp" alt="BEL BURGER" class="hero-logo" id="hero-logo" width="380" height="380">
+                <img src="logo.webp" alt="BEL BURGER" class="hero-logo" id="hero-logo" width="380" height="380" fetchpriority="high">
             </div>
             <div class="hero-info">
                 <div class="focus-container" id="true-focus-container"></div>
@@ -124,8 +127,8 @@
                     Tus Datos
                 </h4>
                 <div class="del-inputs">
-                    <input type="text" id="del-nombre" placeholder="👤 Tu nombre" class="del-input" maxlength="60" autocomplete="given-name">
-                    <input type="tel" id="del-telefono" placeholder="📱 Teléfono (opcional)" class="del-input" maxlength="15" autocomplete="tel" inputmode="tel">
+                    <input type="text" id="del-nombre" placeholder="Tu nombre" class="del-input" maxlength="60" autocomplete="given-name">
+                    <input type="tel" id="del-telefono" placeholder="Telefono (opcional)" class="del-input" maxlength="15" autocomplete="tel" inputmode="tel">
                 </div>
             </div>
             <div class="cart-delivery-box">
@@ -134,9 +137,9 @@
                     Dirección de Entrega
                 </h4>
                 <div class="del-inputs">
-                    <input type="text" id="del-barrio" placeholder="📍 Barrio" class="del-input" maxlength="80" autocomplete="off">
-                    <input type="text" id="del-dir" placeholder="🏠 Dirección (Ej. Calle 5 # 12-34)" class="del-input" maxlength="150" autocomplete="street-address">
-                    <input type="text" id="del-ref" placeholder="🗺️ Referencia de ubicación (Opcional)" class="del-input" maxlength="150" autocomplete="off">
+                    <input type="text" id="del-barrio" placeholder="Barrio" class="del-input" maxlength="80" autocomplete="off">
+                    <input type="text" id="del-dir" placeholder="Direccion (Ej. Calle 5 # 12-34)" class="del-input" maxlength="150" autocomplete="street-address">
+                    <input type="text" id="del-ref" placeholder="Referencia de ubicacion (Opcional)" class="del-input" maxlength="150" autocomplete="off">
                 </div>
                 <button type="button" id="btn-gps" class="btn-gps" aria-label="Usar mi ubicación GPS">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
@@ -249,7 +252,7 @@
         </p>
     </footer>
 
-    <script src="app.js"></script>
+    <script src="app.js" defer></script>
 </body>
 
 </html>
