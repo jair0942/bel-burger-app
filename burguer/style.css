@@ -298,6 +298,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     filter: blur(60px);
     pointer-events: none;
     z-index: 0;
+    will-change: opacity;
 }
 .hero-bg-glow--2 {
     width: 50vw;
@@ -306,7 +307,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     max-height: 400px;
     top: 15%;
     background: radial-gradient(circle, rgba(255,140,0,0.12) 0%, transparent 65%);
-    filter: blur(80px);
+    filter: blur(40px);
     animation: glow-pulse 6s ease-in-out infinite alternate;
 }
 @keyframes glow-pulse {
@@ -336,10 +337,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .hero-logo {
     width: 100%;
     height: auto;
-    /* Soft edge mask — blends into dark background naturally */
     -webkit-mask-image: radial-gradient(ellipse 90% 88% at 50% 48%, #000 50%, transparent 78%);
     mask-image: radial-gradient(ellipse 90% 88% at 50% 48%, #000 50%, transparent 78%);
     filter: drop-shadow(0 0 50px rgba(255,90,0,0.2));
+    will-change: transform;
 }
 
 .hero-info {
@@ -648,6 +649,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
     transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
     box-shadow: -6px 0 30px rgba(0,0,0,0.6);
     overflow: hidden;
+    will-change: transform;
+    contain: layout style paint;
 }
 .cart-panel.open { transform: translateX(0); }
 

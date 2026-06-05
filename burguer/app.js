@@ -11,8 +11,14 @@ function sanitizeInput(str, maxLen) {
         .replace(/<[^>]*>/g, '')
         .replace(/[<>"'`]/g, '')
         .replace(/[\u0000-\u001F]/g, '')
+        .replace(/javascript:/gi, '')
+        .replace(/data:/gi, '')
         .trim()
         .slice(0, maxLen);
+}
+
+function isValidPhone(str) {
+    return /^[\d\s\-+()]{7,20}$/.test(str);
 }
 
 // --- Toast notification system ---
@@ -54,16 +60,7 @@ var products = [
         img: "burgerneuva.webp",
         tag: "Hamburguesa"
     },
-    {
-        id: 9,
-        name: "TopBel",
-        desc: "Pan pretzel, salsa ahumada, lechuga crespa, aros de cebolla apanados, carne de la casa, cheddar, peperonni español, carne desmechada en salsa bbq.",
-        price: 35000,
-        img: "TopBel especial.webp",
-        tag: "Hamburguesa",
-        isNew: true
-    },
-    {
+{
         id: 10,
         name: "TripleBEL",
         desc: "Pan brioche, lechuga crespa, triple carne de la casa, queso cheddar / mozzarella, tocineta, aros de cebolla apanados.",
@@ -277,6 +274,7 @@ function renderCards() {
         img.decoding = 'async';
         img.width = 400;
         img.height = 250;
+        if (p === products[0]) { img.fetchPriority = 'high'; }
         imgBox.appendChild(img);
 
         var tag = document.createElement('span');
@@ -356,7 +354,7 @@ function renderCards() {
 
     // Reveal cards, hide skeleton
     if (skeleton) skeleton.style.display = 'none';
-    grid.style.display = '';
+    grid.style.visibility = 'visible';
 }
 
 // --- Render Adicionales ---
@@ -629,15 +627,18 @@ function initTrueFocus() {
         current = (current + 1) % words.length;
     }
 
-    // Wait for fonts to be ready before first measurement
+    function startFocusLoop() {
+        update();
+        setInterval(update, (animTime + pause) * 1000);
+    }
+
     if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(function () {
-            setTimeout(update, 200);
+            setTimeout(startFocusLoop, 200);
         });
     } else {
-        setTimeout(update, 600);
+        setTimeout(startFocusLoop, 600);
     }
-    setInterval(update, (animTime + pause) * 1000);
 }
 
 // --- Product Modal Logic ---
@@ -859,15 +860,19 @@ function initGeoLocation() {
             var lat = pos.coords.latitude;
             var lon = pos.coords.longitude;
 
+            var controller = new AbortController();
+            var timeoutId = setTimeout(function() { controller.abort(); }, 6000);
+
             fetch('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + lat + '&lon=' + lon, {
                 headers: { 'Accept': 'application/json' },
-                signal: AbortSignal.timeout ? AbortSignal.timeout(6000) : undefined
+                signal: controller.signal
             })
                 .then(function(r) {
                     if (!r.ok) throw new Error('Nominatim error');
                     return r.json();
                 })
                 .then(function(data) {
+                    clearTimeout(timeoutId);
                     var address = data.address;
                     if (address) {
                         var barrio = address.neighbourhood || address.suburb || address.city_district || '';
@@ -878,7 +883,6 @@ function initGeoLocation() {
                         document.getElementById('del-barrio').value = barrio;
                         document.getElementById('del-dir').value = combinedDir;
 
-                        // Visual ok feedback
                         if (barrio) document.getElementById('del-barrio').classList.add('input-ok');
                         if (combinedDir) document.getElementById('del-dir').classList.add('input-ok');
                     }
@@ -887,6 +891,7 @@ function initGeoLocation() {
                     btn.disabled = false;
                 })
                 .catch(function() {
+                    clearTimeout(timeoutId);
                     showToast('Error al obtener dirección. Escríbela manualmente.', 'error');
                     btn.innerHTML = origHTML;
                     btn.disabled = false;
@@ -957,6 +962,7 @@ function initCheckout() {
         var dir     = sanitizeInput(dirRaw, 150);
         var ref     = sanitizeInput(refRaw, 150);
         var tel     = sanitizeInput(telRaw, 15).replace(/[^0-9+\-() ]/g, '');
+        if (telRaw && !isValidPhone(tel)) { tel = ''; }
 
         // Shake & highlight empty required fields
         var hasErrors = false;
