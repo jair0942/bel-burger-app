@@ -119,6 +119,42 @@ var products = [
         price: 22000,
         img: "perroc_.webp",
         tag: "Perro"
+    },
+    {
+        id: 11,
+        name: "Mazorca de pollo",
+        desc: "Maíz, salsa de la casa, lechuga, queso costeño, chongo, pollo en salsa bbq, gratinado.",
+        price: 23000,
+        img: "mazor_pollo.webp",
+        tag: "Mazorca",
+        isNew: true
+    },
+    {
+        id: 12,
+        name: "Mazorca gratinada",
+        desc: "Maíz, lechuga, salsa de la casa, queso costeño, chongo, salchicha ahumada en salsa bbq, gratinado con tocineta.",
+        price: 20000,
+        img: "mazor_grati.webp",
+        tag: "Mazorca",
+        isNew: true
+    },
+    {
+        id: 13,
+        name: "Mazorca 3 carnes",
+        desc: "Maíz, lechuga, salsa de la casa, queso costeño, chongo, pollo, ranchera, chorizo, gratinado.",
+        price: 27000,
+        img: "mazo_3carnes.webp",
+        tag: "Mazorca",
+        isNew: true
+    },
+    {
+        id: 14,
+        name: "Chuzo pollo suizo",
+        desc: "Bollo de queso, lechuga, salsa de la casa, queso costeño, chongo, pollo en salsa bbq, gratinado con maíz.",
+        price: 25000,
+        img: "chuzo_pollo.webp",
+        tag: "Chuzo",
+        isNew: true
     }
 ];
 
