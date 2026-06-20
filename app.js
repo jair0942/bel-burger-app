@@ -40,7 +40,7 @@ function showToast(message, type, duration) {
     toastTimers.push(timer);
 }
 
-// --- Products (Menú real BEL BURGER v2) ---
+// --- Products (Menú real BEL BURGER) ---
 var products = [
     {
         id: 1,
