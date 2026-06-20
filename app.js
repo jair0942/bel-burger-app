@@ -158,7 +158,7 @@ var products = [
         name: "Salchipork",
         desc: "Papas, lechuga, queso costeño, chorizo, salchicha, cerdo en salsa bbq, chongo, gratinado, tocineta.",
         price: 25000,
-        img: "pendiente.webp",
+        img: "Salchipork.webp",
         tag: "Salchipapa",
         isNew: true
     },
@@ -167,7 +167,7 @@ var products = [
         name: "Salchisuiza",
         desc: "Papas, lechuga, queso costeño, salchicha, suiza, chongo, gratinado.",
         price: 24000,
-        img: "pendiente.webp",
+        img: "Salchisuiza.webp",
         tag: "Salchipapa",
         isNew: true
     },
@@ -176,7 +176,7 @@ var products = [
         name: "Suizapollo",
         desc: "Papas, lechuga, queso costeño, pollo salteado con salchicha suiza en salsa bbq, chongo, gratinado con maíz.",
         price: 27000,
-        img: "pendiente.webp",
+        img: "Suizapollo.webp",
         tag: "Salchipapa",
         isNew: true
     },
@@ -185,7 +185,7 @@ var products = [
         name: "Perro italoamericano",
         desc: "Pan finas hierbas, lechuga, queso costeño, salchicha americana, chongo, gratinado, jamones en salsa bbq.",
         price: 17000,
-        img: "pendiente.webp",
+        img: "Perro italoamericano.webp",
         tag: "Perro",
         isNew: true
     },
@@ -194,7 +194,7 @@ var products = [
         name: "Perro ranchero",
         desc: "Pan finas hierbas, lechuga, queso costeño, salchicha americana, chongo, gratinado, salchicha ranchera salteada en salsa bbq.",
         price: 18000,
-        img: "pendiente.webp",
+        img: "Perro ranchero.webp",
         tag: "Perro",
         isNew: true
     },
@@ -203,7 +203,7 @@ var products = [
         name: "Perro suizo",
         desc: "Pan finas hierbas, lechuga, queso costeño, salchicha suiza, chongo, gratinado.",
         price: 20000,
-        img: "pendiente.webp",
+        img: "Perro suizo.webp",
         tag: "Perro",
         isNew: true
     }
