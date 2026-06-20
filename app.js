@@ -1092,28 +1092,29 @@ function initCheckout() {
         btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg> Conectando...';
         btn.disabled = true;
 
-        // Native form submit — iOS Safari compatible
-        var form = document.createElement('form');
-        form.method = 'POST';
-        form.action = '/api/whatsapp';
-        form.target = '_blank';
-        form.style.display = 'none';
+        // Open WhatsApp directly
+        var phone = '573007787710';
+        var waUrl = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
 
-        var input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = 'message';
-        input.value = msg;
-
-        form.appendChild(input);
-        document.body.appendChild(form);
-        form.submit();
-
-        setTimeout(function() {
-            btn.innerHTML = originalHTML;
-            btn.disabled = false;
-            if (form.parentNode) document.body.removeChild(form);
-            showToast('¡Pedido enviado! Revisa WhatsApp.', 'success', 3500);
-        }, 1200);
+        // For iOS Safari: try whatsapp:// URL scheme first, fallback to wa.me
+        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        if (isIOS) {
+            // iOS: use location redirect in the current tab (no popup blocker issue)
+            setTimeout(function() {
+                btn.innerHTML = originalHTML;
+                btn.disabled = false;
+                showToast('¡Pedido enviado! Revisa WhatsApp.', 'success', 3500);
+            }, 500);
+            window.location.href = waUrl;
+        } else {
+            // Android/Desktop: open in new tab
+            window.open(waUrl, '_blank');
+            setTimeout(function() {
+                btn.innerHTML = originalHTML;
+                btn.disabled = false;
+                showToast('¡Pedido enviado! Revisa WhatsApp.', 'success', 3500);
+            }, 1200);
+        }
     });
 }
 
