@@ -152,6 +152,60 @@ var products = [
         img: "chuzo_pollo.webp",
         tag: "Chuzo",
         isNew: true
+    },
+    {
+        id: 15,
+        name: "Salchipork",
+        desc: "Papas, lechuga, queso costeño, chorizo, salchicha, cerdo en salsa bbq, chongo, gratinado, tocineta.",
+        price: 25000,
+        img: "pendiente.webp",
+        tag: "Salchipapa",
+        isNew: true
+    },
+    {
+        id: 16,
+        name: "Salchisuiza",
+        desc: "Papas, lechuga, queso costeño, salchicha, suiza, chongo, gratinado.",
+        price: 24000,
+        img: "pendiente.webp",
+        tag: "Salchipapa",
+        isNew: true
+    },
+    {
+        id: 17,
+        name: "Suizapollo",
+        desc: "Papas, lechuga, queso costeño, pollo salteado con salchicha suiza en salsa bbq, chongo, gratinado con maíz.",
+        price: 27000,
+        img: "pendiente.webp",
+        tag: "Salchipapa",
+        isNew: true
+    },
+    {
+        id: 18,
+        name: "Perro italoamericano",
+        desc: "Pan finas hierbas, lechuga, queso costeño, salchicha americana, chongo, gratinado, jamones en salsa bbq.",
+        price: 17000,
+        img: "pendiente.webp",
+        tag: "Perro",
+        isNew: true
+    },
+    {
+        id: 19,
+        name: "Perro ranchero",
+        desc: "Pan finas hierbas, lechuga, queso costeño, salchicha americana, chongo, gratinado, salchicha ranchera salteada en salsa bbq.",
+        price: 18000,
+        img: "pendiente.webp",
+        tag: "Perro",
+        isNew: true
+    },
+    {
+        id: 20,
+        name: "Perro suizo",
+        desc: "Pan finas hierbas, lechuga, queso costeño, salchicha suiza, chongo, gratinado.",
+        price: 20000,
+        img: "pendiente.webp",
+        tag: "Perro",
+        isNew: true
     }
 ];
 
