@@ -119,8 +119,8 @@ var products = [
     },
     {
         id: 11,
-        name: "Mazorca de pollo",
-        desc: "Maíz, salsa de la casa, lechuga, queso costeño, chongo, pollo en salsa bbq, gratinado.",
+        name: "Mazorca de pollo desgranada",
+        desc: "Maíz desgranado, salsa de la casa, lechuga, queso costeño, chongo, pollo en salsa bbq, gratinado.",
         price: 23000,
         img: "mazor_pollo.webp",
         tag: "Mazorca",
@@ -128,8 +128,8 @@ var products = [
     },
     {
         id: 12,
-        name: "Mazorca gratinada",
-        desc: "Maíz, lechuga, salsa de la casa, queso costeño, chongo, salchicha ahumada en salsa bbq, gratinado con tocineta.",
+        name: "Mazorca desgranada",
+        desc: "Maíz desgranado, lechuga, salsa de la casa, queso costeño, chongo, salchicha ahumada en salsa bbq, gratinado con tocineta.",
         price: 20000,
         img: "mazor_grati.webp",
         tag: "Mazorca",
@@ -137,8 +137,8 @@ var products = [
     },
     {
         id: 13,
-        name: "Mazorca 3 carnes",
-        desc: "Maíz, lechuga, salsa de la casa, queso costeño, chongo, pollo, ranchera, chorizo, gratinado.",
+        name: "Mazorca 3 carnes desgranada",
+        desc: "Maíz desgranado, lechuga, salsa de la casa, queso costeño, chongo, pollo, ranchera, chorizo, gratinado.",
         price: 27000,
         img: "mazo_3carnes.webp",
         tag: "Mazorca",
@@ -146,10 +146,10 @@ var products = [
     },
     {
         id: 14,
-        name: "Chuzo pollo suizo",
-        desc: "Bollo de queso, lechuga, salsa de la casa, queso costeño, chongo, pollo en salsa bbq, gratinado con maíz.",
+        name: "Chuzo desgranado suizo",
+        desc: "Bollo de queso, lechuga, salsa de la casa, queso costeño, chongo, pollo en salsa bbq, gratinado con maíz desgranado.",
         price: 25000,
-        img: "chuzo_pollo.webp",
+        img: "chuzo_mazorca.webp",
         tag: "Chuzo",
         isNew: true
     },
@@ -157,7 +157,7 @@ var products = [
         id: 15,
         name: "Salchipork",
         desc: "Papas, lechuga, queso costeño, chorizo, salchicha, cerdo en salsa bbq, chongo, gratinado, tocineta.",
-        price: 25000,
+        price: 27000,
         img: "Salchipork.webp",
         tag: "Salchipapa",
         isNew: true
