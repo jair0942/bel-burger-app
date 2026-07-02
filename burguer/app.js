@@ -42,12 +42,21 @@ function showToast(message, type, duration) {
 
 // --- Products (Menú real BEL BURGER) ---
 var products = [
+    // ─── HAMBURGUESAS ───
     {
         id: 1,
         name: "Hamburguesa BEL Tradicional",
         desc: "Pan artesanal, carne de la casa, salsa de la casa, mermelada de tocineta, queso cheddar, lechuga crespa, pepinillos y cebolla crispy. (+Papas)",
         price: 23000,
         img: "img-classic.webp",
+        tag: "Hamburguesa"
+    },
+    {
+        id: 5,
+        name: "Chicken BEL Tradicional",
+        desc: "Pan brioche, salsa chipotle, pechuga de pollo apanada, queso mozzarella, salsa ensalada especial de la casa, tocineta ahumada. (+Papas)",
+        price: 23000,
+        img: "hamburguesa_chiken.webp",
         tag: "Hamburguesa"
     },
     {
@@ -60,7 +69,7 @@ var products = [
         img: "burgerneuva.webp",
         tag: "Hamburguesa"
     },
-{
+    {
         id: 10,
         name: "TripleBEL",
         desc: "Pan brioche, lechuga crespa, triple carne de la casa, queso cheddar / mozzarella, tocineta, aros de cebolla apanados.",
@@ -69,22 +78,7 @@ var products = [
         tag: "Hamburguesa",
         isNew: true
     },
-    {
-        id: 5,
-        name: "Chicken BEL Tradicional",
-        desc: "Pan brioche, salsa chipotle, pechuga de pollo apanada, queso mozzarella, salsa ensalada especial de la casa, tocineta ahumada. (+Papas)",
-        price: 23000,
-        img: "hamburguesa_chiken.webp",
-        tag: "Hamburguesa"
-    },
-    {
-        id: 7,
-        name: "Salchi Ranch Tradicional",
-        desc: "Papas a la francesa, lechuga, queso costeño, salsa tártara, salsa de piña, pechuga de pollo en salsa BBQ, salchicha ahumada, ranchera, chongo, queso mozzarella.",
-        price: 25000,
-        img: "salchi.webp",
-        tag: "Salchipapa"
-    },
+    // ─── SALCHIPAPAS ───
     {
         id: 3,
         name: "Salchipapa BEL Sencilla",
@@ -102,56 +96,21 @@ var products = [
         tag: "Salchipapa"
     },
     {
-        id: 2,
-        name: "Perro BEL Tradicional",
-        desc: "Pan artesanal, salchicha americana, salsa de la casa, queso mozzarella, mermelada de tocineta y tocineta crunchy. (+Papas)",
-        price: 18000,
-        img: "perro_tradicional.webp",
-        tag: "Perro"
-    },
-    {
-        id: 8,
-        name: "Dulce Pecado",
-        desc: "Pan de mantequilla, tártara, lechuga, suiza, salsa de piña, papá chongo, queso mozzarella y mermelada de tocineta.",
-        price: 22000,
-        img: "perroc_.webp",
-        tag: "Perro"
-    },
-    {
-        id: 11,
-        name: "Mazorca de pollo desgranada",
-        desc: "Maíz desgranado, salsa de la casa, lechuga, queso costeño, chongo, pollo en salsa bbq, gratinado.",
-        price: 23000,
-        img: "mazor_pollo.webp",
-        tag: "Mazorca",
+        id: 16,
+        name: "Salchisuiza",
+        desc: "Papas, lechuga, queso costeño, salchicha, suiza, chongo, gratinado.",
+        price: 24000,
+        img: "Salchisuiza.webp",
+        tag: "Salchipapa",
         isNew: true
     },
     {
-        id: 12,
-        name: "Mazorca desgranada",
-        desc: "Maíz desgranado, lechuga, salsa de la casa, queso costeño, chongo, salchicha ahumada en salsa bbq, gratinado con tocineta.",
-        price: 20000,
-        img: "mazor_grati.webp",
-        tag: "Mazorca",
-        isNew: true
-    },
-    {
-        id: 13,
-        name: "Mazorca 3 carnes desgranada",
-        desc: "Maíz desgranado, lechuga, salsa de la casa, queso costeño, chongo, pollo, ranchera, chorizo, gratinado.",
-        price: 27000,
-        img: "mazo_3carnes.webp",
-        tag: "Mazorca",
-        isNew: true
-    },
-    {
-        id: 14,
-        name: "Chuzo desgranado suizo",
-        desc: "Bollo de queso, lechuga, salsa de la casa, queso costeño, chongo, pollo en salsa bbq, gratinado con maíz desgranado.",
+        id: 7,
+        name: "Salchi Ranch Tradicional",
+        desc: "Papas a la francesa, lechuga, queso costeño, salsa tártara, salsa de piña, pechuga de pollo en salsa BBQ, salchicha ahumada, ranchera, chongo, queso mozzarella.",
         price: 25000,
-        img: "chuzo_mazorca.webp",
-        tag: "Chuzo",
-        isNew: true
+        img: "salchi.webp",
+        tag: "Salchipapa"
     },
     {
         id: 15,
@@ -159,15 +118,6 @@ var products = [
         desc: "Papas, lechuga, queso costeño, chorizo, salchicha, cerdo en salsa bbq, chongo, gratinado, tocineta.",
         price: 27000,
         img: "Salchipork.webp",
-        tag: "Salchipapa",
-        isNew: true
-    },
-    {
-        id: 16,
-        name: "Salchisuiza",
-        desc: "Papas, lechuga, queso costeño, salchicha, suiza, chongo, gratinado.",
-        price: 24000,
-        img: "Salchisuiza.webp",
         tag: "Salchipapa",
         isNew: true
     },
@@ -180,6 +130,64 @@ var products = [
         tag: "Salchipapa",
         isNew: true
     },
+    // ─── SALVAJADAS ───
+    {
+        id: 21,
+        name: "Salvajada tú y yo",
+        desc: "Papas, lechuga, queso costeño, pollo, cerdo, chorizo, salchicha en salsa bbq, chongo salsas de la casa",
+        price: 40000,
+        img: "salvajada_sin_gratinar.webp",
+        tag: "Salvajada",
+        isNew: true
+    },
+    {
+        id: 22,
+        name: "Salvajada tú y yo",
+        desc: "Papas, lechuga, queso costeño, pollo, cerdo, chorizo, salchicha en salsa bbq, chongo salsas de la casa, gratinado",
+        price: 45000,
+        img: "salvajada_gratinada.webp",
+        tag: "Salvajada",
+        isNew: true
+    },
+    // ─── MAZORCAS ───
+    {
+        id: 12,
+        name: "Mazorca desgranada",
+        desc: "Maíz desgranado, lechuga, salsa de la casa, queso costeño, chongo, salchicha ahumada en salsa bbq, gratinado con tocineta.",
+        price: 20000,
+        img: "mazor_grati.webp",
+        tag: "Mazorca",
+        isNew: true
+    },
+    {
+        id: 11,
+        name: "Mazorca de pollo desgranada",
+        desc: "Maíz desgranado, salsa de la casa, lechuga, queso costeño, chongo, pollo en salsa bbq, gratinado.",
+        price: 23000,
+        img: "mazor_pollo.webp",
+        tag: "Mazorca",
+        isNew: true
+    },
+    {
+        id: 13,
+        name: "Mazorca 3 carnes desgranada",
+        desc: "Maíz desgranado, lechuga, salsa de la casa, queso costeño, chongo, pollo, ranchera, chorizo, gratinado.",
+        price: 27000,
+        img: "mazo_3carnes.webp",
+        tag: "Mazorca",
+        isNew: true
+    },
+    // ─── CHUZOS ───
+    {
+        id: 14,
+        name: "Chuzo desgranado suizo",
+        desc: "Bollo de queso, lechuga, salsa de la casa, queso costeño, chongo, pollo en salsa bbq, gratinado con maíz desgranado.",
+        price: 25000,
+        img: "chuzo_mazorca.webp",
+        tag: "Chuzo",
+        isNew: true
+    },
+    // ─── PERROS ───
     {
         id: 18,
         name: "Perro italoamericano",
@@ -188,6 +196,14 @@ var products = [
         img: "Perro italoamericano.webp",
         tag: "Perro",
         isNew: true
+    },
+    {
+        id: 2,
+        name: "Perro BEL Tradicional",
+        desc: "Pan artesanal, salchicha americana, salsa de la casa, queso mozzarella, mermelada de tocineta y tocineta crunchy. (+Papas)",
+        price: 18000,
+        img: "perro_tradicional.webp",
+        tag: "Perro"
     },
     {
         id: 19,
@@ -206,6 +222,14 @@ var products = [
         img: "Perro suizo.webp",
         tag: "Perro",
         isNew: true
+    },
+    {
+        id: 8,
+        name: "Dulce Pecado",
+        desc: "Pan de mantequilla, tártara, lechuga, suiza, salsa de piña, papá chongo, queso mozzarella y mermelada de tocineta.",
+        price: 22000,
+        img: "perroc_.webp",
+        tag: "Perro"
     }
 ];
 
