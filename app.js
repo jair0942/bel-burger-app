@@ -63,7 +63,7 @@ var products = [
     {
         id: 5,
         name: "Chicken BEL Tradicional",
-        desc: "Pan brioche, salsa chipotle, pechuga de pollo apanada, queso mozzarella, salsa ensalada especial de la casa, tocineta ahumada. (+Papas)",
+        desc: "Pan brioche, mermelada de tocineta, pechuga de pollo apanada, queso cheddar, salsa ensalada especial de la casa, tocineta ahumada. (+Papas)",
         price: 25000,
         img: "hamburguesa_chiken.webp",
         tag: "Hamburguesa"
