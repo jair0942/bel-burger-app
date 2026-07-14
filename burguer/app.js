@@ -44,10 +44,19 @@ function showToast(message, type, duration) {
 var products = [
     // ─── HAMBURGUESAS ───
     {
+        id: 24,
+        name: "La Sencillona",
+        desc: "Pan brioche mix, carne angus 130gr, queso cheddar, lechuga crespa, cebolla, tomate, salsas ahumadas",
+        price: 20000,
+        img: "sencillona.webp",
+        tag: "Hamburguesa",
+        isNew: true
+    },
+    {
         id: 1,
         name: "Hamburguesa BEL Tradicional",
         desc: "Pan artesanal, carne de la casa, salsa de la casa, mermelada de tocineta, queso cheddar, lechuga crespa. (+Papas)",
-        price: 23000,
+        price: 25000,
         img: "img-classic.webp",
         tag: "Hamburguesa"
     },
@@ -55,16 +64,16 @@ var products = [
         id: 5,
         name: "Chicken BEL Tradicional",
         desc: "Pan brioche, salsa chipotle, pechuga de pollo apanada, queso mozzarella, salsa ensalada especial de la casa, tocineta ahumada. (+Papas)",
-        price: 23000,
+        price: 25000,
         img: "hamburguesa_chiken.webp",
         tag: "Hamburguesa"
     },
     {
         id: 6,
         name: "Hamburguesa Doble BEL",
-        desc: "Pan brioche, salsa especial de la casa, lechuga crespa, aros de cebolla apanados, doble carne de la casa, doble cheddar, tocineta ahumada, salsa tártara de la casa. (+Papas). ¡También disponible mixta (pollo + carne) por $29.000!",
-        price: 28000,
-        priceAlt: 29000,
+        desc: "Pan brioche, salsa especial de la casa, lechuga crespa, aros de cebolla apanados, doble carne de la casa, doble cheddar, tocineta ahumada, salsa tártara de la casa. (+Papas). ¡También disponible mixta (pollo + carne) por $31.000!",
+        price: 30000,
+        priceAlt: 31000,
         priceAltLabel: "Mixta (Pollo + Carne)",
         img: "burgerneuva.webp",
         tag: "Hamburguesa"
@@ -73,7 +82,7 @@ var products = [
         id: 10,
         name: "TripleBEL",
         desc: "Pan brioche, lechuga crespa, triple carne de la casa, queso cheddar / mozzarella, tocineta, aros de cebolla apanados.",
-        price: 35000,
+        price: 36000,
         img: "TRIPLE BEL __.webp",
         tag: "Hamburguesa",
         isNew: true
@@ -83,7 +92,7 @@ var products = [
         id: 3,
         name: "Salchipapa BEL Sencilla",
         desc: "Papas a la francesa, salsa de la casa, salsa de piña, salsa tártara, queso costeño, salchicha, tocineta crunchy.",
-        price: 14000,
+        price: 15000,
         img: "salchipapa_sencilla.webp",
         tag: "Salchipapa"
     },
@@ -91,7 +100,7 @@ var products = [
         id: 4,
         name: "Salchipapa BEL Tradicional",
         desc: "Papas a la francesa, salsa de la casa, salsa de piña, tártara, chorizo, queso costeño, chongo, gratinado con maiz",
-        price: 20000,
+        price: 23000,
         img: "salchipapa_tradicional.webp",
         tag: "Salchipapa"
     },
@@ -99,7 +108,7 @@ var products = [
         id: 16,
         name: "Salchisuiza",
         desc: "Papas, lechuga, queso costeño, salchicha, suiza, chongo, gratinado.",
-        price: 24000,
+        price: 25000,
         img: "Salchisuiza.webp",
         tag: "Salchipapa",
         isNew: true
@@ -108,7 +117,7 @@ var products = [
         id: 7,
         name: "Salchi Ranch Tradicional",
         desc: "Papas a la francesa, lechuga, queso costeño, salsa tártara, salsa de piña, pechuga de pollo en salsa BBQ, salchicha ahumada, ranchera, chongo, queso mozzarella.",
-        price: 25000,
+        price: 30000,
         img: "salchi.webp",
         tag: "Salchipapa"
     },
@@ -189,6 +198,15 @@ var products = [
     },
     // ─── PERROS ───
     {
+        id: 23,
+        name: "El Sencillón",
+        desc: "Pan finas hierbas, salchicha de cerdo, mozarella, lechuga, chongo, salsas",
+        price: 10000,
+        img: "sencillon.webp",
+        tag: "Perro",
+        isNew: true
+    },
+    {
         id: 18,
         name: "Perro italoamericano",
         desc: "Pan finas hierbas, lechuga, queso costeño, salchicha americana, chongo, gratinado, jamones en salsa bbq.",
@@ -237,15 +255,13 @@ var products = [
 var adicionales = [
     { name: "Maíz",                price: 5000 },
     { name: "Gratinado (mozzarella)", price: 5000 },
-    { name: "Loncha (mozzarella)",  price: 2000 },
-    { name: "Queso costeño",        price: 4000 },
-    { name: "Suiza",                price: 8000 },
-    { name: "Ranchera",             price: 6000 },
-    { name: "Grille",               price: 4000 },
+    { name: "Grille",               price: 5000 },
+    { name: "Tocineta",             price: 6000 },
+    { name: "Ranchera",             price: 8000 },
     { name: "Porción de papas",     price: 8000 },
-    { name: "Pollo",                price: 10000 },
-    { name: "Butifarra",            price: 6000 },
-    { name: "Tocineta",             price: 5000 }
+    { name: "Pollo",                price: 8000 },
+    { name: "Mermelada de tocineta", price: 8000 },
+    { name: "Suiza",                price: 10000 }
 ];
 
 // --- Formatter ---
