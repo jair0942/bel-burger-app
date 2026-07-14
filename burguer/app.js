@@ -46,7 +46,7 @@ var products = [
     {
         id: 1,
         name: "Hamburguesa BEL Tradicional",
-        desc: "Pan artesanal, carne de la casa, salsa de la casa, mermelada de tocineta, queso cheddar, lechuga crespa, pepinillos y cebolla crispy. (+Papas)",
+        desc: "Pan artesanal, carne de la casa, salsa de la casa, mermelada de tocineta, queso cheddar, lechuga crespa. (+Papas)",
         price: 23000,
         img: "img-classic.webp",
         tag: "Hamburguesa"
