@@ -87,6 +87,15 @@ var products = [
         tag: "Hamburguesa",
         isNew: true
     },
+    {
+        id: 26,
+        name: "La Chingona",
+        desc: "Pan brioche, carne angus, queso cheddar, tocineta ahumada, mexican guacamole, salsa de la casa",
+        price: 36000,
+        img: "chingona.webp",
+        tag: "Hamburguesa",
+        isNew: true
+    },
     // ─── SALCHIPAPAS ───
     {
         id: 3,
@@ -137,6 +146,16 @@ var products = [
         price: 27000,
         img: "Suizapollo.webp",
         tag: "Salchipapa",
+        isNew: true
+    },
+    // ─── FRIES ───
+    {
+        id: 25,
+        name: "American Fries",
+        desc: "Papas, salsa de la casa, carne tipo angus, queso cheddar, tocineta crunchy, tocineta caramelizada",
+        price: 25000,
+        img: "fries.webp",
+        tag: "Fries",
         isNew: true
     },
     // ─── SALVAJADAS ───
