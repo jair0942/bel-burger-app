@@ -177,6 +177,17 @@ var products = [
         tag: "Salvajada",
         isNew: true
     },
+    {
+        id: 27,
+        name: "🥔 La Tripleta",
+        desc: "Papas, salchicha, chorizo, pollo, cerdo.",
+        price: 60000,
+        priceAlt: 65000,
+        priceAltLabel: "Con gratinado",
+        img: "la_tripleta.webp",
+        tag: "Salchipapa",
+        isNew: true
+    },
     // ─── MAZORCAS ───
     {
         id: 12,
@@ -317,8 +328,8 @@ function checkIsOpen(now) {
         return false;
     }
 
-    // Horario normal: Viernes–Domingo, 4 PM – 11:59 PM
-    return (day === 5 || day === 6 || day === 0) && hour >= 16 && hour < 24;
+    // Horario normal: Jueves a Domingo, 6 PM – 11:59 PM
+    return (day === 4 || day === 5 || day === 6 || day === 0) && hour >= 18 && hour < 24;
 }
 
 function initStoreStatus() {
@@ -1045,7 +1056,7 @@ function initCheckout() {
             } else {
                 horarioMsg =
                     '🕓 Nuestro horario de atención es:\n' +
-                    'Viernes a Domingo, de 4:00 PM a 12:00 AM';
+                    'Jueves a Domingo, de 6:00 PM a 12:00 AM';
             }
 
             var continuar = confirm(
