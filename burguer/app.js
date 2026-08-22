@@ -179,9 +179,10 @@ var products = [
     },
     {
         id: 27,
-        name: "🥔 La Tripleta",
+        name: "La Tripleta",
         desc: "Papas, salchicha, chorizo, pollo, cerdo.",
         price: 60000,
+        priceLabel: "Sin gratinado",
         priceAlt: 65000,
         priceAltLabel: "Con gratinado",
         img: "la_tripleta.webp",
@@ -885,7 +886,7 @@ function openProductModal(p) {
     variantOpts.innerHTML = '';
     if (p.priceAlt) {
         variantBox.style.display = 'block';
-        variantOpts.appendChild(buildVariantBtn('Doble Carne', p.price, true));
+        variantOpts.appendChild(buildVariantBtn(p.priceLabel || 'Doble Carne', p.price, true));
         variantOpts.appendChild(buildVariantBtn(p.priceAltLabel, p.priceAlt, false));
     } else {
         variantBox.style.display = 'none';
