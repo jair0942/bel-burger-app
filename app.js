@@ -155,7 +155,7 @@ var products = [
         price: 60000,
         priceAlt: 65000,
         priceAltLabel: "Con gratinado",
-        img: "la_tripleta.png",
+        img: "la_tripleta.webp",
         tag: "Salchipapa",
         isNew: true
     },
