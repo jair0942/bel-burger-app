@@ -100,7 +100,7 @@ var products = [
     {
         id: 3,
         name: "Salchipapa BEL Sencilla",
-        desc: "Papas a la francesa, salsa de la casa, salsa de piña, salsa tártara, queso costeño, salchicha, tocineta crunchy.",
+        desc: "Papa francesa, queso costeño, salsas de la casa, pollo, cerdo, chorizo butifarra, gratinado con maíz y tocino crunch",
         price: 15000,
         img: "salchipapa_sencilla.webp",
         tag: "Salchipapa"
@@ -108,7 +108,7 @@ var products = [
     {
         id: 4,
         name: "Salchipapa BEL Tradicional",
-        desc: "Papas a la francesa, salsa de la casa, salsa de piña, tártara, chorizo, queso costeño, chongo, gratinado con maiz",
+        desc: "Papa francesa, queso costeño, salsas de la casa, pollo, cerdo, chorizo butifarra, gratinado con maíz y tocino crunch",
         price: 23000,
         img: "salchipapa_tradicional.webp",
         tag: "Salchipapa"
@@ -116,7 +116,7 @@ var products = [
     {
         id: 16,
         name: "Salchisuiza",
-        desc: "Papas, lechuga, queso costeño, salchicha, suiza, chongo, gratinado.",
+        desc: "Papa francesa, queso costeño, salsas de la casa, pollo, cerdo, chorizo butifarra, gratinado con maíz y tocino crunch",
         price: 25000,
         img: "Salchisuiza.webp",
         tag: "Salchipapa",
@@ -125,7 +125,7 @@ var products = [
     {
         id: 7,
         name: "Salchi Ranch Tradicional",
-        desc: "Papas a la francesa, lechuga, queso costeño, salsa tártara, salsa de piña, pechuga de pollo en salsa BBQ, salchicha ahumada, ranchera, chongo, queso mozzarella.",
+        desc: "Papa francesa, queso costeño, salsas de la casa, pollo, cerdo, chorizo butifarra, gratinado con maíz y tocino crunch",
         price: 30000,
         img: "salchi.webp",
         tag: "Salchipapa"
@@ -133,7 +133,7 @@ var products = [
     {
         id: 15,
         name: "Salchipork",
-        desc: "Papas, lechuga, queso costeño, chorizo, salchicha, cerdo en salsa bbq, chongo, gratinado, tocineta.",
+        desc: "Papa francesa, queso costeño, salsas de la casa, pollo, cerdo, chorizo butifarra, gratinado con maíz y tocino crunch",
         price: 27000,
         img: "Salchipork.webp",
         tag: "Salchipapa",
@@ -142,7 +142,7 @@ var products = [
     {
         id: 17,
         name: "Suizapollo",
-        desc: "Papas, lechuga, queso costeño, pollo salteado con salchicha suiza en salsa bbq, chongo, gratinado con maíz.",
+        desc: "Papa francesa, queso costeño, salsas de la casa, pollo, cerdo, chorizo butifarra, gratinado con maíz y tocino crunch",
         price: 27000,
         img: "Suizapollo.webp",
         tag: "Salchipapa",
@@ -151,7 +151,7 @@ var products = [
     {
         id: 27,
         name: "🥔 La Tripleta",
-        desc: "Papas, salchicha, chorizo, pollo, cerdo.",
+        desc: "Papa francesa, queso costeño, salsas de la casa, pollo, cerdo, chorizo butifarra, gratinado con maíz y tocino crunch",
         price: 60000,
         priceLabel: "Sin gratinado",
         priceAlt: 65000,
@@ -174,7 +174,7 @@ var products = [
     {
         id: 21,
         name: "Salvajada tú y yo",
-        desc: "Papas, lechuga, queso costeño, pollo, cerdo, chorizo, salchicha en salsa bbq, chongo salsas de la casa",
+        desc: "Papa francesa, queso costeño, salsas de la casa, pollo, cerdo, chorizo butifarra, gratinado con maíz y tocino crunch",
         price: 40000,
         img: "salvajada_sin_gratinar.webp",
         tag: "Salvajada",
@@ -183,9 +183,21 @@ var products = [
     {
         id: 22,
         name: "Salvajada tú y yo",
-        desc: "Papas, lechuga, queso costeño, pollo, cerdo, chorizo, salchicha en salsa bbq, chongo salsas de la casa, gratinado",
+        desc: "Papa francesa, queso costeño, salsas de la casa, pollo, cerdo, chorizo butifarra, gratinado con maíz y tocino crunch",
         price: 45000,
         img: "salvajada_gratinada.webp",
+        tag: "Salvajada",
+        isNew: true
+    },
+    {
+        id: 28,
+        name: "Salvajada la múltiple / 5 personas",
+        desc: "Papa francesa, queso costeño, salsas de la casa, pollo, cerdo, chorizo butifarra, gratinado con maíz y tocino crunch",
+        price: 80000,
+        priceLabel: "Sin gratinado",
+        priceAlt: 85000,
+        priceAltLabel: "Gratinada con maíz",
+        img: "salva5personas.png",
         tag: "Salvajada",
         isNew: true
     },
