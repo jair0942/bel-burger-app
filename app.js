@@ -175,7 +175,8 @@ var products = [
         id: 21,
         name: "Salvajada tú y yo",
         desc: "Papa francesa, queso costeño, salsas de la casa, pollo, cerdo, chorizo butifarra, gratinado con maíz y tocino crunch",
-        price: 40000,
+        price: 45000,
+        priceLabel: "Sin gratinado",
         img: "salvajada_sin_gratinar.webp",
         tag: "Salvajada",
         isNew: true
@@ -184,7 +185,8 @@ var products = [
         id: 22,
         name: "Salvajada tú y yo",
         desc: "Papa francesa, queso costeño, salsas de la casa, pollo, cerdo, chorizo butifarra, gratinado con maíz y tocino crunch",
-        price: 45000,
+        price: 50000,
+        priceLabel: "Con gratinado",
         img: "salvajada_gratinada.webp",
         tag: "Salvajada",
         isNew: true
